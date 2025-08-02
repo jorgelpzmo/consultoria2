@@ -91,7 +91,38 @@ const App: React.FC = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Typography variant="h4">Sección Consulta</Typography>
+         <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center">
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 6000 }}
+              spaceBetween={30}
+              slidesPerView={1}
+              style={{ height: '90%', margin: '20px' }} // Ajusta la altura del Swiper
+            >
+              <SwiperSlide>
+                <Box bgcolor="#d0d0d0" height="100%" display="flex" justifyContent="center" alignItems="center">
+                  <Typography variant="h6">Imagen 1</Typography>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box bgcolor="#c0c0c0" height="100%" display="flex" justifyContent="center" alignItems="center">
+                  <Typography variant="h6">Imagen 2</Typography>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Box bgcolor="#b0b0b0" height="100%" display="flex" justifyContent="center" alignItems="center">
+                  <Typography variant="h6">Imagen 3</Typography>
+                </Box>
+              </SwiperSlide>
+            </Swiper>
+          </Box>
+          {/* Texto descriptivo a la derecha */}
+          <Box width="25%" bgcolor="#e8e8e8" p={2} borderRadius={2}>
+            <Typography variant="body1">
+              Este es un texto descriptivo para la sección Consultas. Aquí puedes agregar más detalles sobre esta sección.
+            </Typography>
+          </Box>
         </Box>
 
         {/* Sección Contacto */}
