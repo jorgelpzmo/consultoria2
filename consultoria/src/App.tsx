@@ -6,6 +6,8 @@ import '../node_modules/swiper/swiper.min.css';
 import '../node_modules/swiper/modules/pagination.min.css';
 import '../node_modules/swiper/modules/autoplay.min.css';
 import { Pagination, Autoplay } from 'swiper/modules';
+import './css/styles.css';
+
 
 const App: React.FC = () => {
   const handleScroll = (sectionId: string) => {
@@ -14,6 +16,8 @@ const App: React.FC = () => {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
@@ -40,43 +44,76 @@ const App: React.FC = () => {
         <Box
           id="inicio"
           height="100%"
-          bgcolor="#f5f5f5"
           display="flex"
           justifyContent="space-between"
           alignItems="center"
           px={2}
+          sx={{
+            background: 'linear-gradient(to bottom, #f5f5f5, #e0e0e0)', // Degradado de f5f5f5 a e0e0e0
+            }}
         >
           {/* Texto descriptivo a la izquierda */}
-          <Box width="25%" bgcolor="#e8e8e8" p={2} borderRadius={2}>
+          <Box width="25%" height="90%">
+            <Typography variant="h4" gutterBottom sx={{ marginBottom: 20, textAlign: 'center' }}>
+              Inicio
+            </Typography>
             <Typography variant="body1">
-              Este es un texto descriptivo para la sección Inicio. Aquí puedes agregar más detalles sobre esta sección.
+              Bienvenido a nuestra página de inicio. Aquí encontrarás información general sobre nuestros servicios y cómo podemos ayudarte a alcanzar tus objetivos.
             </Typography>
           </Box>
 
           {/* Carrusel de imágenes a la derecha */}
-          <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center">
+          <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center"
+            sx={{
+              '& .swiper-pagination-bullet': {
+              backgroundColor: '#00594f', // Cambia el color de los puntos
+              width: '12px', // Cambia el tamaño de los puntos
+              height: '12px',
+              opacity: 0.2, // Ajusta la opacidad
+              },
+              '& .swiper-pagination-bullet-active': {
+                backgroundColor: '#008c7a', // Cambia el color del punto activo
+                opacity: 1, // Asegura que el punto activo sea completamente visible
+              },
+            }}
+          >
             <Swiper
               modules={[Pagination, Autoplay]}
               pagination={{ clickable: true }}
               autoplay={{ delay: 6000 }}
               spaceBetween={30}
               slidesPerView={1}
-              style={{ height: '90%', margin: '20px' }} // Ajusta la altura del Swiper
+              style={{ height: '90%', margin: '20px' }}
             >
               <SwiperSlide>
-                <Box bgcolor="#d0d0d0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 1</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/Recurso-17entrevista.png"
+                  alt="Imagen 1"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <Box bgcolor="#c0c0c0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 2</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/despacho-abogados-consultoria-integral.webp"
+                  alt="Imagen 2"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <Box bgcolor="#b0b0b0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 3</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/imagen3-seccion1.jpg"
+                  alt="Imagen 3"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
             </Swiper>
           </Box>
@@ -86,41 +123,77 @@ const App: React.FC = () => {
         <Box
           id="consulta"
           height="100%"
-          bgcolor="#e0e0e0"
           display="flex"
-          justifyContent="center"
+          justifyContent="space-between"
           alignItems="center"
+          px={2}
+          sx={{
+            background: 'linear-gradient(to bottom, #e0e0e0, #cfcfcf)', // Degradado de e0e0e0 a cfcfcf
+          }}
         >
-         <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center">
+          {/* Carrusel de imágenes a la izquierda */}
+          <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center"
+          
+          sx={{
+              '& .swiper-pagination-bullet': {
+              backgroundColor: '#00594f', // Cambia el color de los puntos
+              width: '12px', // Cambia el tamaño de los puntos
+              height: '12px',
+              opacity: 0.2, // Ajusta la opacidad
+              },
+              '& .swiper-pagination-bullet-active': {
+                backgroundColor: '#008c7a', // Cambia el color del punto activo
+                opacity: 1, // Asegura que el punto activo sea completamente visible
+              },
+            }}>
             <Swiper
               modules={[Pagination, Autoplay]}
               pagination={{ clickable: true }}
               autoplay={{ delay: 6000 }}
               spaceBetween={30}
               slidesPerView={1}
-              style={{ height: '90%', margin: '20px' }} // Ajusta la altura del Swiper
+              style={{ height: '90%', margin: '20px' }}
             >
               <SwiperSlide>
-                <Box bgcolor="#d0d0d0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 1</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/Recurso-17entrevista.png"
+                  alt="Imagen 1"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <Box bgcolor="#c0c0c0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 2</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/despacho-abogados-consultoria-integral.webp"
+                  alt="Imagen 2"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <Box bgcolor="#b0b0b0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 3</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/imagen3-seccion1.jpg"
+                  alt="Imagen 3"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
             </Swiper>
           </Box>
+
           {/* Texto descriptivo a la derecha */}
-          <Box width="25%" bgcolor="#e8e8e8" p={2} borderRadius={2}>
+          <Box width="25%" height="90%">
+            <Typography variant="h4" gutterBottom sx={{ marginBottom: 20, textAlign: 'center' }}>
+              Consultas
+            </Typography>
             <Typography variant="body1">
-              Este es un texto descriptivo para la sección Consultas. Aquí puedes agregar más detalles sobre esta sección.
+              En esta sección puedes realizar consultas personalizadas sobre nuestros servicios. Nuestro equipo está listo para resolver tus dudas y ofrecerte soluciones adaptadas a tus necesidades.
             </Typography>
           </Box>
         </Box>
@@ -129,43 +202,75 @@ const App: React.FC = () => {
         <Box
           id="contacto"
           height="100%"
-          bgcolor="#cfcfcf"
+          sx={{ background: 'linear-gradient(to bottom, #cfcfcf, #bfbfbf)' }} // Degradado de cfcfcf a bfbfbf
           display="flex"
           justifyContent="space-between"
           alignItems="center"
           px={2}
+          
         >
           {/* Texto descriptivo a la izquierda */}
-          <Box width="25%" bgcolor="#e8e8e8" p={2} borderRadius={2}>
+          <Box width="25%" height="90%">
+            <Typography variant="h4" gutterBottom sx={{ marginBottom: 20, textAlign: 'center' }}>
+              Contacto
+            </Typography>
             <Typography variant="body1">
-              Este es un texto descriptivo para la sección Contacto. Aquí puedes agregar información adicional.
+              Ponte en contacto con nosotros para más información. Estamos disponibles para atender tus consultas y ayudarte a encontrar la mejor solución para tus necesidades.
             </Typography>
           </Box>
 
           {/* Carrusel de imágenes a la derecha */}
-          <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center">
+          <Box width="75%" height="100%" display="flex" justifyContent="center" alignItems="center"
+          sx={{
+              '& .swiper-pagination-bullet': {
+              backgroundColor: '#00594f', // Cambia el color de los puntos
+              width: '12px', // Cambia el tamaño de los puntos
+              height: '12px',
+              opacity: 0.2, // Ajusta la opacidad
+              },
+              '& .swiper-pagination-bullet-active': {
+                backgroundColor: '#008c7a', // Cambia el color del punto activo
+                opacity: 1, // Asegura que el punto activo sea completamente visible
+              },
+            }}
+          >
             <Swiper
               modules={[Pagination, Autoplay]}
               pagination={{ clickable: true }}
               autoplay={{ delay: 6000 }}
               spaceBetween={30}
               slidesPerView={1}
-              style={{ height: '90%', margin: '20px' }} // Ajusta la altura del Swiper
+              style={{ height: '90%', margin: '20px' }}
             >
               <SwiperSlide>
-                <Box bgcolor="#d0d0d0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 1</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/Recurso-17entrevista.png"
+                  alt="Imagen 1"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <Box bgcolor="#c0c0c0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 2</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/despacho-abogados-consultoria-integral.webp"
+                  alt="Imagen 2"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
               <SwiperSlide>
-                <Box bgcolor="#b0b0b0" height="100%" display="flex" justifyContent="center" alignItems="center">
-                  <Typography variant="h6">Imagen 3</Typography>
-                </Box>
+                <Box
+                  component="img"
+                  src="../public/imagen3-seccion1.jpg"
+                  alt="Imagen 3"
+                  height="100%"
+                  width="100%"
+                  sx={{ objectFit: 'cover' }}
+                />
               </SwiperSlide>
             </Swiper>
           </Box>

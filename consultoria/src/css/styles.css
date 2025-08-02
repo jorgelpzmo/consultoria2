@@ -11,3 +11,14 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+/* Cambiar el color del botón "siguiente" */
+.swiper-pagination-bullet-active {
+  background-color: #00594f; /* Cambia este color al que desees */
+}
+
+
+/* Cambiar el color al pasar el mouse por encima */
+.swiper-pagination-bullet:hover {
+  color: #008c7a; /* Color al hacer hover */
+}
