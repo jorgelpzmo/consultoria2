@@ -7,6 +7,7 @@ import '../node_modules/swiper/modules/pagination.min.css';
 import '../node_modules/swiper/modules/autoplay.min.css';
 import { Pagination, Autoplay } from 'swiper/modules';
 import './css/styles.css';
+import ContactForm from "./components/ContactForm";
 
 
 const App: React.FC = () => {
@@ -216,6 +217,7 @@ const App: React.FC = () => {
             </Typography>
             <Typography variant="body1">
               Ponte en contacto con nosotros para más información. Estamos disponibles para atender tus consultas y ayudarte a encontrar la mejor solución para tus necesidades.
+                <ContactForm />
             </Typography>
           </Box>
 
