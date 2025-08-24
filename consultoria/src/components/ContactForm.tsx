@@ -6,6 +6,8 @@ interface FormData {
     nombre: string;
     email: string;
     confirmEmail: string;
+    telefono: string,
+    confirmTelefono: string,
     mensaje: string;
 }
 
@@ -14,6 +16,8 @@ function ContactForm() {
         nombre: "",
         email: "",
         confirmEmail: "",
+        telefono: "",
+        confirmTelefono: "",
         mensaje: "",
     });
 
@@ -35,16 +39,24 @@ function ContactForm() {
             return;
         }
 
+        // Validación de confirmación de telefono
+        if (formData.telefono.trim().toLowerCase() !== formData.confirmTelefono.trim().toLowerCase()) {
+            setError("Los telefonos no coinciden.");
+            return;
+        }
+
 
         try {
             await axios.post("http://localhost:3001/send-email", {
                 nombre: formData.nombre,
                 email: formData.email,
                 mensaje: formData.mensaje,
-                confirmarEmail: formData.confirmEmail
+                confirmarEmail: formData.confirmEmail,
+                telefono: formData.telefono,
+                confirmTelefono: formData.confirmTelefono
             });
             setEnviado(true);
-            setFormData({ nombre: "", email: "", confirmEmail: "", mensaje: ""});
+            setFormData({ nombre: "", email: "", confirmEmail: "",telefono:"", confirmTelefono:"", mensaje: ""});
         } catch (err: unknown) {
             if (axios.isAxiosError(err)) {
                 // Si el backend envía un mensaje de error en la respuesta
@@ -87,6 +99,27 @@ function ContactForm() {
                 name="confirmEmail"
                 placeholder="Confirma tu correo"
                 value={formData.confirmEmail}
+                onChange={handleChange}
+                required
+            />
+            <br />
+
+
+            <input
+                type="telefono"
+                name="telefono"
+                placeholder="Tu teléfono"
+                value={formData.telefono}
+                onChange={handleChange}
+                required
+            />
+            <br />
+
+            <input
+                type="telefono"
+                name="confirmTelefono"
+                placeholder="Confirma tu teléfono"
+                value={formData.confirmTelefono}
                 onChange={handleChange}
                 required
             />
