@@ -6,8 +6,8 @@ interface FormData {
     nombre: string;
     email: string;
     confirmEmail: string;
-    telefono: string,
-    confirmTelefono: string,
+    telefono: string;
+    confirmTelefono: string;
     mensaje: string;
 }
 
@@ -39,12 +39,11 @@ function ContactForm() {
             return;
         }
 
-        // Validación de confirmación de telefono
-        if (formData.telefono.trim().toLowerCase() !== formData.confirmTelefono.trim().toLowerCase()) {
-            setError("Los telefonos no coinciden.");
+        // Validación de confirmación de teléfono
+        if (formData.telefono.trim() !== formData.confirmTelefono.trim()) {
+            setError("Los teléfonos no coinciden.");
             return;
         }
-
 
         try {
             await axios.post("http://localhost:3001/send-email", {
@@ -53,26 +52,36 @@ function ContactForm() {
                 mensaje: formData.mensaje,
                 confirmarEmail: formData.confirmEmail,
                 telefono: formData.telefono,
-                confirmTelefono: formData.confirmTelefono
+                confirmTelefono: formData.confirmTelefono,
             });
             setEnviado(true);
-            setFormData({ nombre: "", email: "", confirmEmail: "",telefono:"", confirmTelefono:"", mensaje: ""});
-        } catch (err: unknown) {
+            setFormData({ nombre: "", email: "", confirmEmail: "", telefono: "", confirmTelefono: "", mensaje: "" });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
             if (axios.isAxiosError(err)) {
-                // Si el backend envía un mensaje de error en la respuesta
                 const backendMessage = err.response?.data?.message || err.response?.data?.error;
                 setError(backendMessage || err.message || "Hubo un error al enviar el mensaje.");
-            } else if (err instanceof Error) {
-                setError(err.message);
             } else {
-                setError("Error desconocido al enviar el mensaje.");
+                setError(err?.message || "Error desconocido al enviar el mensaje.");
             }
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "auto" }}>
-            <h2>Contacto</h2>
+        <form
+            onSubmit={handleSubmit}
+            style={{
+                maxWidth: "300px", // Reduce el ancho máximo del formulario
+                margin: "auto", // Centra horizontalmente
+                padding: "10px", // Reduce el padding interno
+                borderRadius: "8px", // Bordes redondeados
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center", // Centra el contenido horizontalmente
+                marginTop: "25px",
+            }}
+        >
+            {/* <h2 style={{ textAlign: "center", color: "#00594f", margin:'0px'}}>Contacto</h2> */}
 
             <input
                 type="text"
@@ -81,8 +90,15 @@ function ContactForm() {
                 value={formData.nombre}
                 onChange={handleChange}
                 required
+                style={{
+                    width: "100%",
+                    padding: "8px", // Reduce el padding interno
+                    marginBottom: "10px", // Reduce el margen inferior
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px", // Reduce el tamaño de la fuente
+                }}
             />
-            <br />
 
             <input
                 type="email"
@@ -91,8 +107,15 @@ function ContactForm() {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                style={{
+                    width: "100%",
+                    padding: "8px",
+                    marginBottom: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                }}
             />
-            <br />
 
             <input
                 type="email"
@@ -101,43 +124,92 @@ function ContactForm() {
                 value={formData.confirmEmail}
                 onChange={handleChange}
                 required
+                style={{
+                    width: "100%",
+                    padding: "8px",
+                    marginBottom: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                }}
             />
-            <br />
-
 
             <input
-                type="telefono"
+                type="text"
                 name="telefono"
                 placeholder="Tu teléfono"
                 value={formData.telefono}
                 onChange={handleChange}
                 required
+                style={{
+                    width: "100%",
+                    padding: "8px",
+                    marginBottom: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                }}
             />
-            <br />
 
             <input
-                type="telefono"
+                type="text"
                 name="confirmTelefono"
                 placeholder="Confirma tu teléfono"
                 value={formData.confirmTelefono}
                 onChange={handleChange}
                 required
+                style={{
+                    width: "100%",
+                    padding: "8px",
+                    marginBottom: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                }}
             />
-            <br />
 
             <textarea
                 name="mensaje"
-                placeholder="Tu mensaje"
+                placeholder="Escribe la consulta que quieres realizar"
                 value={formData.mensaje}
                 onChange={handleChange}
                 required
+                style={{
+                    width: "100%",
+                    padding: "8px",
+                    marginBottom: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                    fontFamily: "Arial, sans-serif",
+                    resize: "none",
+                    height: "60px", // Ajusta la altura del textarea
+                    
+                }}
             />
-            <br />
 
-            <button type="submit">Enviar</button>
+            <button
+                type="submit"
+                style={{
+                    width: "100%",
+                    padding: "10px",
+                    backgroundColor: "#00594f",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    marginTop: "20px",
+                    transition: "background 0.2s",
+                }}
+                onMouseOver={e => (e.currentTarget.style.backgroundColor = "#00413a")}
+                onMouseOut={e => (e.currentTarget.style.backgroundColor = "#00594f")}
+            >
+                Enviar
+            </button>
 
-            {enviado && <p style={{ color: "green" }}>Mensaje enviado con éxito ✅</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {enviado && <p style={{ color: "green", textAlign: "center", marginTop: "10px" }}>Mensaje enviado con éxito ✅</p>}
+            {error && <p style={{ color: "red", textAlign: "center", marginTop: "10px" }}>{error}</p>}
         </form>
     );
 }
